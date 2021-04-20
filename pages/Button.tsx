@@ -7,12 +7,22 @@ export default function Button(props) {
     setCounter(counter + 1);
   }
 
-  return(
+  return (
     <>
       {/* title é uma propriedade que criamos */}
       {/* children é oque está entro as tags */}
-      <button onClick={Increment} >{props.title} {props.children} / Clicado {counter}</button>
-      <br/> <br/>
+      <button onClick={Increment}>
+        {props.title}
+        {" "}
+        {props.children}
+        {" "}
+        / Clicado
+        {" "}
+        {counter}
+      </button>
+      <br />
+      {" "}
+      <br />
     </>
-  )
+  );
 }

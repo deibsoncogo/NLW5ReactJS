@@ -1,4 +1,4 @@
-import Button from "./Button"
+import Button from "./Button";
 
 export default function Home() {
   return (
@@ -8,5 +8,5 @@ export default function Home() {
       <Button title="Segundo">Button</Button>
       <Button title="Terceiro">Button</Button>
     </>
-  )
+  );
 }
