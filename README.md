@@ -124,3 +124,55 @@ Se recebemos por exemplo uma descrição que contenha comandos html dentro dela 
   dangerouslySetInnerHTML={{ __html: episode.description }}
 />
 ```
+
+## Aula 04 - Landing
+>É hora de pousar em um novo planeta
+
+Ao rodar a build (Criar a versão estável da nossa aplicação) o `Next JS` vai criar todas as páginas de forma **estática** conforme nos configuramos, pois o tempo definido começa a contar neste momento, para as página estáticas isso não gera nenhum problema
+
+Para não termos problemas na versão estável com as **páginas dinâmicas** teremos que criar a função `getStaticPaths` dentro da página, assim conseguimos definir quais páginas devem ser geradas em `paths` e falar oque fazer com as não geradas em `fallback`
+```ts
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: [
+    { params: { slug: "link-episodio" } },
+  ],
+  fallback: "blocking",
+});
+```
+
+O `fallback` possui três opções de configuração
+  * `false` vai dizer para não carregar nada e gerar o erro 404
+  * `true` vai gerar o página pelo frontend e vai tentar retornar as informações mais como elas estão sendo processadas temos um erro 404, para evitar este erro temos que criar uma regra de espera
+  * `blocking` vai gerar a página pelo servidor do next js e retornar as informações somente depois que tudo estiver carregado
+```ts
+import { useRouter } from "next/router";
+
+const router = useRouter();
+
+if (router.isFallback) {
+  return <p>Carregando...</p>;
+}
+```
+
+Para que todos os itens da nossa aplicação tenham acesso do podcast a tocar iremos usar os `context`
+
+Para controlar o preenchimento da barra conforma o tempo passa iremos usar esta dependência
+```bash
+yarn add rc-slider
+```
+
+Para usar elementos do `HTML` precisamos criar uma referencia para conseguir manipular ele, para isso podemos usar a importação abaixo
+```ts
+import { useRef } from "react";
+```
+
+A tag `audio` possui dois itens que passa a informação do status do áudio
+```ts
+<audio
+  src={episode.url}
+  ref={audioRef}
+  autoPlay
+  onPlay={() => SetPlayingState(true)} // vai executar a função quando o áudio iniciar
+  onPause={() => SetPlayingState(false)} // quando o áudio for pausado vai executar a função
+/>
+```

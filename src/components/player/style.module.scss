@@ -1,5 +1,5 @@
 .container {
-  padding: 3rem 4rem;
+  padding: 2rem;
   width: 20rem;
   height: 100vh; // ocupar o máximo da altura
 
@@ -31,6 +31,28 @@
   }
 }
 
+.currentEpisode {
+  text-align: center;
+
+  img {
+    border-radius: 1.5rem;
+  }
+
+  strong {
+    display: block;
+    margin-top: 2rem;
+    font: 600 1.25rem Lexend, sans-serif;
+    line-height: 1.75rem;
+  }
+
+  span {
+    display: block;
+    margin-top: 1rem;
+    opacity: 0.6;
+    line-height: 1.5rem;
+  }
+}
+
 .emptyPlayer {
   width: 15rem;
   height: 15rem;
@@ -49,12 +71,12 @@
 .progress {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   font-size: 0.875rem;
 
   span {
     display: inline-block;
-    width: 4rem;
+    width: 3rem;
     text-align: center;
   }
 
@@ -82,11 +104,25 @@
     border: 0;
     font-size: 0;
 
+    transition: filter 0.2s;
+
+    &:disabled {
+      cursor: default;
+    }
+
+    &:hover:enabled {
+      filter: brightness(0.8);
+    }
+
     &.playButton {
       width: 4rem;
       height: 4rem;
       border-radius: 1rem;
       background: var(--purple-400);
+
+      &:hover:enabled {
+        filter: brightness(0.95);
+      }
     }
   }
 }

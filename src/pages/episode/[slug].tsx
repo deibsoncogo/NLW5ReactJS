@@ -54,10 +54,22 @@ export default function Episode({ episode }: HomeProps) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: [],
-  fallback: "blocking",
-});
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { data } = await api.get("episodes", {
+    params: {
+      _limit: 2,
+      _sort: "published_at",
+      _order: "desc",
+    },
+  });
+
+  const paths = data.map((episode) => ({ params: { slug: episode.id } }));
+
+  return {
+    paths, // paginas dinâmicas a gerar no momento da build
+    fallback: "blocking", // gerar as páginas faltante na requisição no lado do next
+  };
+};
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { slug } = ctx.params;
