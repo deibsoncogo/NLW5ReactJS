@@ -1,7 +1,7 @@
 .container {
   padding: 0 1rem;
   height: calc(100vh - 6.5rem);
-  overflow-y: scroll; // faz a barra de rolagem funcionar somente dentro da div
+  overflow-y: auto; // faz a barra de rolagem funcionar somente dentro da div
 
   h2 {
     margin-top: 2rem;

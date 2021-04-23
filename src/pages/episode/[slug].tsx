@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import ptBR, { format, parseISO } from "date-fns";
 import { api } from "../../services/api";
 import ConvertDuration from "../../utils/convertDuration";
@@ -25,11 +26,13 @@ export default function Episode({ episode }: HomeProps) {
   return (
     <div className={style.episode}>
       <div className={style.thumbnailContainer}>
-        <button type="button">
-          <img src="/arrow-left.svg" alt="Voltar" />
-        </button>
+        <Link href="/">
+          <button type="button">
+            <img src="/arrow-left.svg" alt="Voltar" />
+          </button>
+        </Link>
 
-        <Image width={700} height={160} src={episode.thumbnail} objectFit="cover" />
+        <Image width={1000} height={300} src={episode.thumbnail} objectFit="cover" />
 
         <button type="button">
           <img src="/play.svg" alt="Tocar episódio" />
