@@ -19,9 +19,22 @@
   "plugins": [
     "react",
     "react-hooks",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "eslint-plugin-import-helpers"
   ],
   "rules": {
+    "linebreak-style": "off", // tipo de enter
+    "no-console": "off", // console
+    "quotes": ["error", "double"], // obriga a usar aspas duplas
+    "object-curly-newline": ["error", { "multiline": true }], // não quebra importações
+    "import-helpers/order-imports": [ // ordena importações
+      "warn", {
+        "groups": [
+          ["/react/", "/next/", "/express/", "/typeorm/"], "module",
+          ["parent", "sibling", "index"], "/style/"
+        ], "newlinesBetween": "never", "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-filename-extension": [
@@ -46,17 +59,16 @@
     ],
     "react/react-in-jsx-scope": "off",
     // desativando
-    "linebreak-style": "off", // tipo do enter
     // alterando
-    "quotes": ["error", "double"], // somente aspas duplas
-    "object-curly-newline": ["error", { "multiline": true }], // não quebra importação
     // boas praticas
-    "react/prop-types": "off",
-    "react/jsx-props-no-spreading": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
     "react/jsx-one-expression-per-line": "off",
     "import/no-duplicates": "off",
-    "react/self-closing-comp": "off"
+    "react/no-danger": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "jsx-a11y/control-has-associated-label": "off"
   },
   "settings": {
     "import/resolver": {

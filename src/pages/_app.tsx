@@ -1,7 +1,6 @@
 import "../styles/global.scss"; // importando a estilização global
 import Header from "../components/header";
 import Player from "../components/player";
-
 import style from "../styles/app.module.scss";
 
 function MyApp({ Component, pageProps }) {
@@ -9,7 +8,7 @@ function MyApp({ Component, pageProps }) {
     <div className={style.wrapper}>
       <main>
         <Header />
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
       </main>
 
       <Player />

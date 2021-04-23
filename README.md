@@ -74,3 +74,53 @@ Para executar o banco de dados vamos utilizar o atalho abaixo com algumas opçõ
 ```
 
 Para criar uma configuração `SPA` basta introduzir os comandos normalmente onde os comandos executado pelo navegador é feito depois que a página iniciar, do tipo `SSR` temos que criar uma exportação da de uma função com o nome de `getServerSideProps` em uma das páginas por fora de tudo pois assim tudo que estiver dentro dela vai ser executado pelo servidor do `Next` e no tipo `SSG` também temos que criar uma função como antes mais com o nome de `getStaticProps` assim conseguimos definir quando uma nova requisição deve ser feito a partir do comando `revalidate`
+
+## Aula 03 - In orbit
+>Estamos em órbita, explorando um universo infinito, repleto de novos conhecimentos
+
+Para criar a tipagem da função que cuida do `SSR` ou `SSG` vamos precisar realizar uma importação com o nome parecido da função, oque muda é a primeira letra pois ela é em maiúscula, e depois realizar estas mudanças
+```ts
+import { GetStaticProps } from "next";
+
+export async function getStaticProps() {} // sem a tipagem
+export const getStaticProps: GetStaticProps = async () => {} // com a tipagem
+```
+
+Para lidar melhor com as requisições do servidor iremos usar a dependência abaixo, assim conseguimos criar limitações num formato semântico
+```bash
+yarn add axios
+```
+
+É extramente importante já receber os dados formatado no frontend pois assim iremos evitar processamentos extras, esse processamento em computadores mais lento pode gerar conflitos, caso elas não venham corretamente temos que fazer isso no recebimentos deles
+
+O `Next` também consegue lidar com alguns tipos de dados como imagens, para realizar isso precisamos a importação abaixo, criar uma configuração no arquivo `next.config.js` falando onde as imagens estão salvas, trocando a `img` por `Image` e personalizar oque precisar
+```ts
+import Image from "next/image";
+
+<Image
+  width={192} // define a largura a baixar do servidor
+  height={192} // define a altura a baixar do servidor
+  objectFit="cover" // como a imagem deve se ajustar
+  src={m.thumbnail} // nativo do img informando qual imagem carregar
+  alt={m.title} // nativo do img informando oque mostrar se não carregar a imagem
+/>
+```
+
+O `Next` consegue lidar com rotas assim criando elas automaticamente onde o caminho será o nome do arquivo contido na pasta `pages` que não começa com `_`, existe uma técnica de nomear o arquivo onde assim a rota se tornar dinâmica, para isso basta usar `[]` onde precisa ser dinâmico
+
+O `Next` também possui uma funcionalidade de carregar somente os itens diferente quando trocar de página, para utilizar bastas realizar esta importação e mudar o link para essa tag invés de um `a`
+```ts
+import Link from "next/link";
+
+<Link href={`/episode/${episode.id}`}>
+  <a>{episode.title}</a>
+</Link>
+```
+
+Se recebemos por exemplo uma descrição que contenha comandos html dentro dela o sistema vai considerar como texto e não comandos, para força ele a executar precisamos usar o `dangerouslySetInnerHTML` informando o local da informação desejado
+```ts
+<div
+  className={style.description}
+  dangerouslySetInnerHTML={{ __html: episode.description }}
+/>
+```
