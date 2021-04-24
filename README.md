@@ -2,7 +2,9 @@
 Conteúdo aprendido no Next Level Week 5 na trilha sobre o React JS com o Diego Fernandes, iremos usar a metodologia de frontend para criar um site que vai permitir ouvir **podcast**
 
 As ferramentas utilizadas foram: `Node JS`, `Next JS`, `React JS`, `TypeScript` e `Yarn`
+
 As dependências utilizadas foram: `axios`, `date-fns`, `rc-slider` e `sass`
+
 Dependências usadas em modo de desenvolvimento: `eslint` e `json-server`
 
 Comandos para executar a aplicação
