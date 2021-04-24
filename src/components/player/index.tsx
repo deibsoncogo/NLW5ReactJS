@@ -109,7 +109,7 @@ export default function Player() {
             <IoIosShuffle className={style.iconReact} />
           </button>
 
-          <button type="button" onClick={PlayPrevious} disabled={!episode || !hasPrevious}>
+          <button type="button" onClick={PlayPrevious} disabled={!episode || !hasPrevious || isLoop}>
             <BiSkipPrevious className={style.iconReact} />
           </button>
 
@@ -123,7 +123,7 @@ export default function Player() {
               ? <BiPause className={style.iconReact} /> : <BiPlay className={style.iconReact} /> }
           </button>
 
-          <button type="button" onClick={PlayNext} disabled={!episode || !hasNext}>
+          <button type="button" onClick={PlayNext} disabled={!episode || !hasNext || isLoop}>
             <BiSkipNext className={style.iconReact} />
           </button>
 
