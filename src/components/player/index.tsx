@@ -20,23 +20,24 @@ export default function Player() {
     if (isPlaying) { audioRef.current.play(); } else { audioRef.current.pause(); }
   }, [isPlaying]);
 
-  function setupProgressListener() {
+  function SetupProgressListener() {
     audioRef.current.currentTime = 0;
     audioRef.current.addEventListener("timeupdate", () => {
       setProgress(Math.floor(audioRef.current.currentTime));
     });
   }
 
-  function handleSeek(amount: number) {
+  function HandleSeek(amount: number) {
     audioRef.current.currentTime = amount;
     setProgress(amount);
   }
 
-  function handleEpisodeEnded() {
-    if (hasNext) {
+  function EpisodeEnded() {
+    if (isShuffling) {
       PlayNext();
     } else {
       clearPlayerState();
+      setProgress(0);
     }
   }
 
@@ -70,7 +71,7 @@ export default function Player() {
               <Slider
                 max={episode.durationSeconds}
                 value={progress}
-                onChange={handleSeek}
+                onChange={HandleSeek}
                 trackStyle={{ backgroundColor: "#04d361" }}
                 railStyle={{ backgroundColor: "#9f75ff" }}
                 handleStyle={{ borderColor: "#04d361", borderWidth: 4 }}
@@ -88,11 +89,11 @@ export default function Player() {
             src={episode.url}
             ref={audioRef}
             autoPlay
-            onEnded={handleEpisodeEnded}
+            onEnded={EpisodeEnded}
             loop={isLoop}
             onPlay={() => SetPlayingState(true)}
             onPause={() => SetPlayingState(false)}
-            onLoadedMetadata={setupProgressListener}
+            onLoadedMetadata={SetupProgressListener}
           />
         ) }
 
@@ -127,7 +128,7 @@ export default function Player() {
           <button
             type="button"
             onClick={ToggleLoop}
-            disabled={!episode}
+            disabled={!episode || episodeList.length === 1}
             className={isLoop ? style.isActive : ""}
           >
             <img src="/repeat.svg" alt="Repetir" />
