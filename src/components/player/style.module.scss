@@ -104,7 +104,12 @@
     border: 0;
     font-size: 0;
 
-    transition: filter 0.2s;
+    transition: filter 0.2s color 0.2s;
+
+    .iconReact {
+      font-size: 35px;
+      color: #ffffff;
+    }
 
     &:disabled {
       cursor: default;
@@ -116,11 +121,10 @@
     }
 
     &.isActive:enabled {
-      filter: invert(0.35) sepia(1) saturate(3) hue-rotate(100deg);
-    }
-
-    &.isActive:enabled {
-      filter: brightness(0.6) invert(0.35) sepia(1) saturate(3) hue-rotate(100deg);
+      .iconReact {
+        color: var(--purple-900);
+        filter: brightness(0.8);
+      }
     }
 
     &.playButton {

@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { BiChevronLeft, BiPlay } from "react-icons/bi";
 import ptBR, { format, parseISO } from "date-fns";
 import { UsePlayer } from "../../contexts/playerContext";
 import { api } from "../../services/api";
@@ -33,14 +34,14 @@ export default function Episode({ episode }: HomeProps) {
       <div className={style.thumbnailContainer}>
         <Link href="/">
           <button type="button">
-            <img src="/arrow-left.svg" alt="Voltar" />
+            <BiChevronLeft className={style.iconReact} />
           </button>
         </Link>
 
         <Image width={1000} height={300} src={episode.thumbnail} objectFit="cover" />
 
         <button type="button" onClick={() => Play(episode)}>
-          <img src="/play.svg" alt="Tocar episódio" />
+          <BiPlay className={style.iconReact} />
         </button>
       </div>
 

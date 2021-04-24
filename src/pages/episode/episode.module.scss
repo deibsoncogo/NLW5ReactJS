@@ -22,6 +22,11 @@
 
       transition: filter 0.2s;
 
+      .iconReact {
+        font-size: 35px;
+        color: var(--white);
+      }
+
       &:first-child {
         left: 0;
         top: 50%;

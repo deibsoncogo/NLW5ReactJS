@@ -2,6 +2,7 @@ import { GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { BiPlay } from "react-icons/bi";
 import ptBR, { format, parseISO } from "date-fns";
 import { UsePlayer } from "../contexts/playerContext";
 import { api } from "../services/api";
@@ -56,7 +57,7 @@ export default function Home({ recentEpisode, oldEpisode }: HomeProps) {
               </div>
 
               <button type="button" onClick={() => PlayList(allEpisode, index)}>
-                <img src="/play-green.svg" alt="Tocar episódio" />
+                <BiPlay className={style.iconReact} />
               </button>
             </li>
           ))}
@@ -101,7 +102,7 @@ export default function Home({ recentEpisode, oldEpisode }: HomeProps) {
                     type="button"
                     onClick={() => PlayList(allEpisode, index + recentEpisode.length)}
                   >
-                    <img src="/play-green.svg" alt="Tocar episódio" />
+                    <BiPlay className={style.iconReact} />
                   </button>
                 </td>
               </tr>

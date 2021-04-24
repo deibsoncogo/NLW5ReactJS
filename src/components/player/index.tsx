@@ -1,6 +1,8 @@
 import "rc-slider/assets/index.css";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { BiSkipPrevious, BiPlay, BiPause, BiSkipNext } from "react-icons/bi";
+import { IoIosShuffle, IoIosRepeat } from "react-icons/io";
 import Slider from "rc-slider";
 import { UsePlayer } from "../../contexts/playerContext";
 import ConvertDuration from "../../utils/convertDuration";
@@ -72,9 +74,9 @@ export default function Player() {
                 max={episode.durationSeconds}
                 value={progress}
                 onChange={HandleSeek}
-                trackStyle={{ backgroundColor: "#04d361" }}
+                trackStyle={{ backgroundColor: "#6725ff" }} // --purple-850
                 railStyle={{ backgroundColor: "#9f75ff" }}
-                handleStyle={{ borderColor: "#04d361", borderWidth: 4 }}
+                handleStyle={{ borderColor: "#4c00ff", borderWidth: 4 }} // --purple-900
               />
             ) : (
               <div className={style.emptySlider} />
@@ -104,11 +106,11 @@ export default function Player() {
             disabled={!episode || episodeList.length === 1}
             className={isShuffling ? style.isActive : ""}
           >
-            <img src="./shuffle.svg" alt="Embaralhar" />
+            <IoIosShuffle className={style.iconReact} />
           </button>
 
           <button type="button" onClick={PlayPrevious} disabled={!episode || !hasPrevious}>
-            <img src="./play-previous.svg" alt="Tocar o anterior" />
+            <BiSkipPrevious className={style.iconReact} />
           </button>
 
           <button
@@ -118,11 +120,11 @@ export default function Player() {
             disabled={!episode}
           >
             { isPlaying
-              ? <img src="./pause.svg" alt="Pausar" /> : <img src="./play.svg" alt="Tocar" /> }
+              ? <BiPause className={style.iconReact} /> : <BiPlay className={style.iconReact} /> }
           </button>
 
           <button type="button" onClick={PlayNext} disabled={!episode || !hasNext}>
-            <img src="./play-next.svg" alt="Tocar o próximo" />
+            <BiSkipNext className={style.iconReact} />
           </button>
 
           <button
@@ -131,7 +133,7 @@ export default function Player() {
             disabled={!episode || episodeList.length === 1}
             className={isLoop ? style.isActive : ""}
           >
-            <img src="/repeat.svg" alt="Repetir" />
+            <IoIosRepeat className={style.iconReact} />
           </button>
         </div>
       </footer>
