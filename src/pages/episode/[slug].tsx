@@ -1,7 +1,9 @@
 import { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import ptBR, { format, parseISO } from "date-fns";
+import { UsePlayer } from "../../contexts/playerContext";
 import { api } from "../../services/api";
 import ConvertDuration from "../../utils/convertDuration";
 import style from "./episode.module.scss";
@@ -23,8 +25,11 @@ type HomeProps = { // possui a mesma funcionalidade do interface
 }
 
 export default function Episode({ episode }: HomeProps) {
+  const { Play } = UsePlayer();
+
   return (
     <div className={style.episode}>
+      <Head><title>{episode.title}</title></Head>
       <div className={style.thumbnailContainer}>
         <Link href="/">
           <button type="button">
@@ -34,7 +39,7 @@ export default function Episode({ episode }: HomeProps) {
 
         <Image width={1000} height={300} src={episode.thumbnail} objectFit="cover" />
 
-        <button type="button">
+        <button type="button" onClick={() => Play(episode)}>
           <img src="/play.svg" alt="Tocar episódio" />
         </button>
       </div>

@@ -9,15 +9,13 @@ export default class MyDocument extends Document {
           {/* é um dos locais que podemos injetar nossa configurações */}
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend:wght@500;600&display=swap" rel="stylesheet" />
+
+          <link rel="shortcut icon" href="/favicon.png" type="image/png" />
         </Head>
 
         <body>
-          <Main />
-          {" "}
-          {/* onde vai ficar nossa aplicação */}
-          <NextScript />
-          {" "}
-          {/* onde vai ficar os aquivos que o Next precisa */}
+          <Main /> {/* onde vai ficar nossa aplicação */}
+          <NextScript /> {/* onde vai ficar os aquivos que o Next precisa */}
         </body>
       </Html>
     );

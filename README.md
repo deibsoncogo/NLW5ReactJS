@@ -176,3 +176,10 @@ A tag `audio` possui dois itens que passa a informação do status do áudio
   onPause={() => SetPlayingState(false)} // quando o áudio for pausado vai executar a função
 />
 ```
+
+## Aula 05 - Surface exploration
+>Etapa final da nossa missão. Em um novo planeta, vamos explorar a superfície e assimilar novos conhecimentos
+
+Precisamos refatorar nosso context pois ele ficou em umas das páginas principais, enquanto tivermos somente um context isso não será problema, quando criamos mais context eles iram se misturar dificultando na interpretação e manutenção da aplicação
+
+O `React` possui um pacote de ícones totalmente editáveis, para mais tem este [link](https://react-icons.github.io/react-icons/)
