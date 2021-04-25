@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BiChevronLeft, BiPlay } from "react-icons/bi";
 import ptBR, { format, parseISO } from "date-fns";
 import { UsePlayer } from "../../contexts/playerContext";
+import { UseTheme } from "../../contexts/themeContext";
 import { api } from "../../services/api";
 import ConvertDuration from "../../utils/convertDuration";
 import style from "./episode.module.scss";
@@ -26,10 +27,12 @@ type HomeProps = { // possui a mesma funcionalidade do interface
 }
 
 export default function Episode({ episode }: HomeProps) {
+  const { isThemeDark } = UseTheme();
+
   const { Play } = UsePlayer();
 
   return (
-    <div className={style.episode}>
+    <div id={isThemeDark && style.dark} className={style.episode}>
       <Head><title>{episode.title}</title></Head>
       <div className={style.thumbnailContainer}>
         <Link href="/">
@@ -46,13 +49,14 @@ export default function Episode({ episode }: HomeProps) {
       </div>
 
       <header>
-        <h1>{episode.title}</h1>
-        <span>{episode.members}</span>
-        <span>{episode.publishedAt}</span>
-        <span>{episode.durationHours}</span>
+        <h1 id={isThemeDark && style.dark}>{episode.title}</h1>
+        <span id={isThemeDark && style.dark}>{episode.members}</span>
+        <span id={isThemeDark && style.dark}>{episode.publishedAt}</span>
+        <span id={isThemeDark && style.dark}>{episode.durationHours}</span>
       </header>
 
       <div
+        id={isThemeDark && style.dark}
         className={style.description}
         dangerouslySetInnerHTML={{ __html: episode.description }}
       />

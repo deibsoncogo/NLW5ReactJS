@@ -11,6 +11,11 @@
   align-items: center;
   justify-content: space-between;
 
+  &#dark {
+    background: var(--dark-green-500);
+    color: var(--dark-100);
+  }
+
   header {
     display: flex;
     align-items: center;
@@ -66,6 +71,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &#dark {
+    border: 1.5px dashed var(--dark-green-300);
+    background: linear-gradient(143.8 deg, rgba(52, 247, 52, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+  }
 }
 
 .progress {
@@ -88,6 +98,10 @@
       height: 4px;
       background: var(--purple-300);
       border-radius: 2px;
+
+      &#dark {
+        background: var(--dark-green-300);
+      }
     }
   }
 }
@@ -108,7 +122,11 @@
 
     .iconReact {
       font-size: 35px;
-      color: #ffffff;
+      color: var(--white);
+
+      &#dark {
+        color: var(--dark-100);
+      }
     }
 
     &:disabled {
@@ -124,6 +142,10 @@
       .iconReact {
         color: var(--purple-900);
         filter: brightness(0.8);
+
+        &#dark {
+          color: var(--dark-green-900);
+        }
       }
     }
 
@@ -132,6 +154,10 @@
       height: 4rem;
       border-radius: 1rem;
       background: var(--purple-400);
+
+      &#dark {
+        background: var(--dark-green-400);
+      }
 
       &:hover:enabled {
         filter: brightness(0.95);

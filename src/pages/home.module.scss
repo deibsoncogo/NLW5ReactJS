@@ -3,9 +3,17 @@
   height: calc(100vh - 6.5rem);
   overflow-y: auto; // faz a barra de rolagem funcionar somente dentro da div
 
+  &#dark {
+    background: var(--dark-350);
+  }
+
   h2 {
     margin-top: 2rem;
     margin-bottom: 1rem;
+
+    &#dark {
+      color: var(--dark-red);
+    }
   }
 }
 
@@ -26,11 +34,10 @@
       display: flex;
       align-items: center;
 
-      // img {
-      //   width: 6rem;
-      //   height: 6rem;
-      //   border-radius: 1rem;
-      // }
+      &#dark {
+        background: var(--dark-400);
+        border: 1px solid var(--dark-300);
+      }
 
       .episodeDetail {
         flex: 1;
@@ -44,6 +51,10 @@
           text-decoration: none;
           line-height: 1.4rem;
 
+          &#dark {
+            color: var(--dark-orange);
+          }
+
           &:hover {
             text-decoration: underline;
           }
@@ -56,12 +67,20 @@
           white-space: nowrap; // proíbe quebra de linha
           overflow: hidden; // oculta oque passar pelo final do campo
           text-overflow: ellipsis; // cria três pontinhos no final
+
+          &#dark {
+           color: var(--dark-100);
+          }
         }
 
         span {
           display: inline-block;
           margin-top: 0.5rem;
           font-size: 0.875rem;
+
+          &#dark {
+            color: var(--dark-100);
+          }
 
           &:last-child {
             margin-left: 0.5rem;
@@ -102,6 +121,11 @@
           color: var(--green-500);
         }
 
+        &#dark {
+          background: var(--dark-300);
+          border: 1px solid var(--dark-200);
+        }
+
         &:hover {
           filter: brightness(0.95);
         }
@@ -113,12 +137,24 @@
 .oldEpisode {
   padding-bottom: 2rem;
 
+  &#dark {
+    color: var(--dark-red);
+  }
+
   table {
     width: 100%;
+
+    &#dark {
+      color: var(--dark-100);
+    }
 
     th, td {
       padding: 0.75rem 1rem;
       border-bottom: 1px solid var(--gray-100);
+
+      &#dark {
+        color: var(--dark-orange);
+      }
     }
 
     th {
@@ -145,6 +181,10 @@
         line-height: 1.4rem;
         font-size: 1rem;
 
+        &#dark {
+          color: var(--dark-100);
+        }
+
         &:hover {
           text-decoration: underline;
         }
@@ -163,6 +203,11 @@
         .iconReact {
           font-size: 25px;
           color: var(--green-500);
+        }
+
+        &#dark {
+          background: var(--dark-300);
+          border: 1px solid var(--dark-200);
         }
 
         &:hover {

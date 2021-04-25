@@ -2,20 +2,23 @@ import "../styles/global.scss"; // importando a estilização global
 import Header from "../components/header";
 import Player from "../components/player";
 import { PlayerContextProvider } from "../contexts/playerContext";
+import { ThemeContextProvider } from "../contexts/themeContext";
 import style from "../styles/app.module.scss";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <PlayerContextProvider>
-      <div className={style.wrapper}>
-        <main>
-          <Header />
-          <Component {...pageProps} />
-        </main>
+    <ThemeContextProvider>
+      <PlayerContextProvider>
+        <div className={style.wrapper}>
+          <main>
+            <Header />
+            <Component {...pageProps} />
+          </main>
 
-        <Player />
-      </div>
-    </PlayerContextProvider>
+          <Player />
+        </div>
+      </PlayerContextProvider>
+    </ThemeContextProvider>
   );
 }
 

@@ -5,10 +5,13 @@ import { BiSkipPrevious, BiPlay, BiPause, BiSkipNext } from "react-icons/bi";
 import { IoIosShuffle, IoIosRepeat } from "react-icons/io";
 import Slider from "rc-slider";
 import { UsePlayer } from "../../contexts/playerContext";
+import { UseTheme } from "../../contexts/themeContext";
 import ConvertDuration from "../../utils/convertDuration";
 import style from "./style.module.scss";
 
 export default function Player() {
+  const { isThemeDark } = UseTheme();
+
   const audioRef = useRef<HTMLAudioElement>(null);
   const [progress, setProgress] = useState(0);
 
@@ -46,7 +49,7 @@ export default function Player() {
   const episode = episodeList[currentEpisodeIndex];
 
   return (
-    <div className={style.container}>
+    <div id={isThemeDark && style.dark} className={style.container}>
       <header>
         <img src="/playing.svg" alt="Tocando agora" />
         <strong>Tocando agora</strong>
@@ -59,7 +62,7 @@ export default function Player() {
           <span>{episode.members}</span>
         </div>
       ) : (
-        <div className={style.emptyPlayer}>
+        <div id={isThemeDark && style.dark} className={style.emptyPlayer}>
           <strong>Selecione um podcast para ouvir</strong>
         </div>
       ) }
@@ -74,12 +77,22 @@ export default function Player() {
                 max={episode.durationSeconds}
                 value={progress}
                 onChange={HandleSeek}
-                trackStyle={{ backgroundColor: "#6725ff" }} // --purple-850
-                railStyle={{ backgroundColor: "#9f75ff" }}
-                handleStyle={{ borderColor: "#4c00ff", borderWidth: 4 }} // --purple-900
+                trackStyle={{
+                  backgroundColor: isThemeDark
+                    ? "var(--dark-green-800)" : "var(--purple-800)",
+                }}
+                railStyle={{
+                  backgroundColor: isThemeDark
+                    ? "var(--dark-green-300)" : "var(--purple-300)",
+                }}
+                handleStyle={{
+                  borderColor: isThemeDark
+                    ? "var(--dark-green-900)" : "var(--purple-900)",
+                  borderWidth: 4,
+                }}
               />
             ) : (
-              <div className={style.emptySlider} />
+              <div id={isThemeDark && style.dark} className={style.emptySlider} />
             ) }
 
           </div>
@@ -99,32 +112,34 @@ export default function Player() {
           />
         ) }
 
-        <div className={style.buttons}>
+        <div id={isThemeDark && style.dark} className={style.buttons}>
           <button
             type="button"
             onClick={ToggleShuffling}
             disabled={!episode || episodeList.length === 1}
             className={isShuffling ? style.isActive : ""}
           >
-            <IoIosShuffle className={style.iconReact} />
+            <IoIosShuffle id={isThemeDark && style.dark} className={style.iconReact} />
           </button>
 
           <button type="button" onClick={PlayPrevious} disabled={!episode || !hasPrevious || isLoop}>
-            <BiSkipPrevious className={style.iconReact} />
+            <BiSkipPrevious id={isThemeDark && style.dark} className={style.iconReact} />
           </button>
 
           <button
             type="button"
+            id={isThemeDark && style.dark}
             className={style.playButton}
             onClick={TogglePlay}
             disabled={!episode}
           >
             { isPlaying
-              ? <BiPause className={style.iconReact} /> : <BiPlay className={style.iconReact} /> }
+              ? <BiPause id={isThemeDark && style.dark} className={style.iconReact} />
+              : <BiPlay id={isThemeDark && style.dark} className={style.iconReact} /> }
           </button>
 
           <button type="button" onClick={PlayNext} disabled={!episode || !hasNext || isLoop}>
-            <BiSkipNext className={style.iconReact} />
+            <BiSkipNext id={isThemeDark && style.dark} className={style.iconReact} />
           </button>
 
           <button
@@ -133,7 +148,7 @@ export default function Player() {
             disabled={!episode || episodeList.length === 1}
             className={isLoop ? style.isActive : ""}
           >
-            <IoIosRepeat className={style.iconReact} />
+            <IoIosRepeat id={isThemeDark && style.dark} className={style.iconReact} />
           </button>
         </div>
       </footer>

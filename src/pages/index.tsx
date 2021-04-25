@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BiPlay } from "react-icons/bi";
 import ptBR, { format, parseISO } from "date-fns";
 import { UsePlayer } from "../contexts/playerContext";
+import { UseTheme } from "../contexts/themeContext";
 import { api } from "../services/api";
 import ConvertDuration from "../utils/convertDuration";
 import style from "./home.module.scss";
@@ -26,37 +27,35 @@ type HomeProps = { // possui a mesma funcionalidade do interface
 }
 
 export default function Home({ recentEpisode, oldEpisode }: HomeProps) {
+  const { isThemeDark } = UseTheme();
+
   const { PlayList } = UsePlayer();
 
   const allEpisode = [...recentEpisode, ...oldEpisode];
 
   return (
-    <div className={style.container}>
+    <div id={isThemeDark && style.dark} className={style.container}>
       <Head><title>Podcasts | FalaDev</title></Head>
       <section className={style.recentEpisode}>
-        <h2>Últimos lançamentos</h2>
+        <h2 id={isThemeDark && style.dark}>Últimos lançamentos</h2>
 
         <ul>
           {recentEpisode.map((episode, index) => (
-            <li key={episode.id}>
-              {/* <Image
-                width={192}
-                height={192}
-                objectFit="cover"
-                src={episode.thumbnail}
-                alt={episode.title}
-              /> */}
-
+            <li id={isThemeDark && style.dark} key={episode.id}>
               <div className={style.episodeDetail}>
                 <Link href={`/episode/${episode.id}`}>
-                  <a>{episode.title}</a>
+                  <a id={isThemeDark && style.dark}>{episode.title}</a>
                 </Link>
-                <p>{episode.members}</p>
-                <span>{episode.publishedAt}</span>
-                <span>{episode.durationHours}</span>
+                <p id={isThemeDark && style.dark}>{episode.members}</p>
+                <span id={isThemeDark && style.dark}>{episode.publishedAt}</span>
+                <span id={isThemeDark && style.dark}>{episode.durationHours}</span>
               </div>
 
-              <button type="button" onClick={() => PlayList(allEpisode, index)}>
+              <button
+                type="button"
+                id={isThemeDark && style.dark}
+                onClick={() => PlayList(allEpisode, index)}
+              >
                 <BiPlay className={style.iconReact} />
               </button>
             </li>
@@ -65,15 +64,15 @@ export default function Home({ recentEpisode, oldEpisode }: HomeProps) {
       </section>
 
       <section className={style.oldEpisode}>
-        <h2>Todos episódios</h2>
+        <h2 id={isThemeDark && style.dark}>Todos episódios</h2>
 
-        <table cellSpacing={0}>
+        <table cellSpacing={0} id={isThemeDark && style.dark}>
           <thead>
             <th />
-            <th>Podcast</th>
-            <th>Integrantes</th>
-            <th>Data</th>
-            <th>Duração</th>
+            <th id={isThemeDark && style.dark}>Podcast</th>
+            <th id={isThemeDark && style.dark}>Integrantes</th>
+            <th id={isThemeDark && style.dark}>Data</th>
+            <th id={isThemeDark && style.dark}>Duração</th>
             <th />
           </thead>
 
@@ -91,7 +90,7 @@ export default function Home({ recentEpisode, oldEpisode }: HomeProps) {
                 </td>
                 <td>
                   <Link href={`/episode/${episode.id}`}>
-                    <a>{episode.title}</a>
+                    <a id={isThemeDark && style.dark}>{episode.title}</a>
                   </Link>
                 </td>
                 <td>{episode.members}</td>
@@ -101,6 +100,7 @@ export default function Home({ recentEpisode, oldEpisode }: HomeProps) {
                   <button
                     type="button"
                     onClick={() => PlayList(allEpisode, index + recentEpisode.length)}
+                    id={isThemeDark && style.dark}
                   >
                     <BiPlay className={style.iconReact} />
                   </button>

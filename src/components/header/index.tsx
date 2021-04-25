@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
+import { BsLayoutTextWindow } from "react-icons/bs";
 import format from "date-fns/format";
 import ptBR from "date-fns/locale/pt-BR";
+import { UseTheme } from "../../contexts/themeContext";
 import style from "./style.module.scss";
 
 export default function Header() {
+  const { isThemeDark, ToggleTheme } = UseTheme();
+
   const currentDate = format(new Date(), "EEEEEE, d MMMM", { locale: ptBR });
 
   const [salutation, setSalutation] = useState("");
@@ -21,12 +25,16 @@ export default function Header() {
   }, [hora]);
 
   return (
-    <header className={style.container}>
-      <img src="/logo.svg" alt="Podcastr" />
+    <header id={isThemeDark && style.dark} className={style.container}>
+      <img src={isThemeDark ? "/logo-dark.svg" : "/logo.svg"} alt="Podcastr" />
 
-      <p>{salutation}, o melhor para você sempre ouvir!</p>
+      <p id={isThemeDark && style.dark}>{salutation}, o melhor para você sempre ouvir!</p>
 
       <span>{currentDate}</span>
+
+      <button type="button" id={isThemeDark && style.dark} onClick={ToggleTheme}>
+        <BsLayoutTextWindow />
+      </button>
     </header>
   );
 }
