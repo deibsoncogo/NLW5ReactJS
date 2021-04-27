@@ -86,9 +86,9 @@ export default function Player() {
                     ? "var(--dark-green-300)" : "var(--purple-300)",
                 }}
                 handleStyle={{
-                  borderColor: isThemeDark
-                    ? "var(--dark-green-900)" : "var(--purple-900)",
                   borderWidth: 4,
+                  borderColor: isThemeDark
+                    ? "var(--dark-green-500)" : "var(--purple-900)",
                 }}
               />
             ) : (
